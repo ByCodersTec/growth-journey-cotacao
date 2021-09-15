@@ -8889,3 +8889,91 @@ Processing by Api::V1::QuotationsController#create as JSON
 Completed 200 OK in 70ms (Views: 0.8ms | ActiveRecord: 7.7ms | Allocations: 27833)
 
 
+Started GET "/" for ::1 at 2021-09-15 20:00:44 -0300
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms | Allocations: 5029)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-09-15 20:00:44 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (Duration: 1.7ms | Allocations: 707)
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 8.9ms | Allocations: 3855)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 27.7ms | Allocations: 9419)
+Completed 200 OK in 43ms (Views: 33.6ms | ActiveRecord: 0.6ms | Allocations: 17201)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-09-15 20:00:55 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"teste@teste.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "teste@teste.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 223ms (ActiveRecord: 0.9ms | Allocations: 5855)
+
+
+Started GET "/" for ::1 at 2021-09-15 20:00:55 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 310)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 3424)
+Completed 200 OK in 17ms (Views: 9.4ms | ActiveRecord: 0.4ms | Allocations: 5995)
+
+
+Started GET "/quotations/new" for ::1 at 2021-09-15 20:00:58 -0300
+Processing by QuotationsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotations/new.html.erb within layouts/application
+  Rendered quotations/_form.html.erb (Duration: 5.8ms | Allocations: 2488)
+  Rendered quotations/new.html.erb within layouts/application (Duration: 8.4ms | Allocations: 3033)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 6090)
+Completed 200 OK in 36ms (Views: 14.5ms | ActiveRecord: 0.9ms | Allocations: 18774)
+
+
+Started POST "/quotations" for ::1 at 2021-09-15 20:00:59 -0300
+Processing by QuotationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "quotation"=>{"name"=>"", "value"=>"0.0", "discount"=>"0.0", "installments"=>""}, "commit"=>"Create Quotation"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/quotation.rb:24:in `calculate_commissions'
+  [1m[36mSetup Load (0.5ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:24:in `calculate_commissions'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:25:in `calculate_commissions'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:32:in `calculate_other_values'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:33:in `calculate_other_values'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:38:in `calculate_taxs'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:14:in `calculate_factory_cost'
+  [1m[36mQuotation Create (0.9ms)[0m  [1m[32mINSERT INTO "quotations" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", ""], ["created_at", "2021-09-15 23:00:59.978755"], ["updated_at", "2021-09-15 23:00:59.978755"]]
+  ↳ app/controllers/quotations_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/quotations_controller.rb:16:in `create'
+Redirected to http://localhost:3000/quotations
+Completed 302 Found in 67ms (ActiveRecord: 5.5ms | Allocations: 17901)
+
+
+Started GET "/quotations" for ::1 at 2021-09-15 20:01:00 -0300
+Processing by QuotationsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotations/index.html.erb within layouts/application
+  [1m[36mQuotation Load (0.4ms)[0m  [1m[34mSELECT "quotations".* FROM "quotations"[0m
+  ↳ app/views/quotations/index.html.erb:28
+  Rendered quotations/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 3013)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 6031)
+Completed 200 OK in 21ms (Views: 11.3ms | ActiveRecord: 0.7ms | Allocations: 7856)
+
+
