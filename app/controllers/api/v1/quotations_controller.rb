@@ -1,9 +1,11 @@
-class QuotationsController < ApplicationController
+class Api::V1::QuotationsController < ApplicationController
   before_action :set_quotation, only: %i[ edit update destroy ]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def index    
     @quotations = Quotation.all 
+
+    render status: :ok, json: {quotations: QuotationSerializer.new(@quotations).to_h}
   end
 
   def new
@@ -14,7 +16,7 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.new(quotation_params)
 
     if @quotation.save
-      redirect_to quotations_path
+      render status: :ok, json: {quotations: QuotationSerializer.new(@quotation).to_h}
     else
       render json: @quotation.errors, status: :unprocessable_entity
     end
@@ -25,7 +27,7 @@ class QuotationsController < ApplicationController
   def update
 
     if @quotation.update(quotation_params)
-      redirect_to quotations_path
+      render status: :ok, json: {quotations: QuotationSerializer.new(@quotation).to_h}
     else
       render json: @quotation.errors, status: :unprocessable_entity
     end
@@ -33,7 +35,7 @@ class QuotationsController < ApplicationController
 
   def destroy
     @quotation.destroy
-    redirect_to quotations_path
+    render status: :ok, json: {quotations: QuotationSerializer.new(@quotation).to_h}
   end
 
   private
@@ -46,3 +48,5 @@ class QuotationsController < ApplicationController
     params.require(:quotation).permit(:name, :value, :installments, :discount)
   end
 end
+
+# quotation[name]

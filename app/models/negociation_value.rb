@@ -1,3 +1,3 @@
-class NegociationValue < ApplicationRecord
-  
+class NegociationValue < ApplicationRecord  
+
 end

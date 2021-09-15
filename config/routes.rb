@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :quotations
-  root to: 'quotation#index'
-  get 'index' => 'quotation#index'
+  root to: 'welcome#index'
   
+  namespace :api, defaults: {format: 'json'} do 
+    namespace :v1 do
+      resources :quotations
+    end
+  end
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -23,6 +23,7 @@ class Quotation < ApplicationRecord
   def calculate_commissions
     self.assembler_commission = value * (Setup.first.assembler_commission)/100
     self.manager_commission = value * (Setup.first.manager_commission)/100
+    #self.finder_commission = value * (Setup.first.finder_commission)/100
     #self.seller_commission = value * (Setup.first.seller_commission)/100
   end
 
@@ -35,7 +36,7 @@ class Quotation < ApplicationRecord
   # tax
   def calculate_taxs
       self.tax = value * (Setup.first.tax)/100
-      #self.resultado 
+      #self.resultado
   end
 
 end
