@@ -19771,3 +19771,203 @@ Migrating to CreateNegociationValues (20210823223648)
   [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(4476573937299326835)[0m
   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/1" for ::1 at 2021-09-23 15:07:33 -0300
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+Completed 404 Not Found in 16ms (ActiveRecord: 7.1ms | Allocations: 4931)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:9:in `show'
+Started GET "/" for ::1 at 2021-09-23 15:07:40 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 12ms (ActiveRecord: 1.3ms | Allocations: 2852)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-09-23 15:07:40 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (Duration: 1.6ms | Allocations: 688)
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 8.7ms | Allocations: 3591)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 24.4ms | Allocations: 9136)
+Completed 200 OK in 38ms (Views: 28.7ms | ActiveRecord: 0.0ms | Allocations: 15306)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-09-23 15:07:42 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"teste@teste.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "teste@teste.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 11ms (ActiveRecord: 2.1ms | Allocations: 2068)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"teste@teste.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 172)
+  Rendered /usr/share/rvm/gems/ruby-3.0.1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1164)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 4216)
+Completed 200 OK in 214ms (Views: 7.6ms | ActiveRecord: 0.0ms | Allocations: 5599)
+
+
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "teste@teste.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "teste@teste.com"], ["encrypted_password", "$2a$12$22KCFlaN.7q6EvlsbIS9C.MKSzMwbgdt7WVc8YrBS0DsfaMa/pU8a"], ["created_at", "2021-09-23 18:23:15.820595"], ["updated_at", "2021-09-23 18:23:15.820595"]]
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetup Create (1.0ms)[0m  [1m[32mINSERT INTO "setups" ("manager_commission", "assembler_commission", "factory_cost", "shipping_cost", "reserve_cost", "tax", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["manager_commission", "3.0"], ["assembler_commission", "10.0"], ["factory_cost", "12200.0"], ["shipping_cost", "6.0"], ["reserve_cost", "3.0"], ["tax", "2.75"], ["created_at", "2021-09-23 18:25:45.860015"], ["updated_at", "2021-09-23 18:25:45.860015"]]
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetup Load (0.7ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.6ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.6ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.6ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.6ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.5ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSetup Load (0.4ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mQuotation Create (0.9ms)[0m  [1m[32mINSERT INTO "quotations" ("value", "factory_cost", "reserve_cost", "tax", "manager_commission", "assembler_commission", "shipping_cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["value", "20800.0"], ["factory_cost", "12200.0"], ["reserve_cost", "624.0"], ["tax", "572.0"], ["manager_commission", "624.0"], ["assembler_commission", "2080.0"], ["shipping_cost", "732.0"], ["created_at", "2021-09-23 18:51:12.058177"], ["updated_at", "2021-09-23 18:51:12.058177"]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/users/sign_in" for ::1 at 2021-09-23 15:51:34 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"teste@teste.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "teste@teste.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 251ms (ActiveRecord: 22.2ms | Allocations: 7312)
+
+
+Started GET "/" for ::1 at 2021-09-23 15:51:35 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 345)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 3460)
+Completed 200 OK in 18ms (Views: 9.8ms | ActiveRecord: 2.0ms | Allocations: 5941)
+
+
+Started GET "/quotations/new" for ::1 at 2021-09-23 15:51:39 -0300
+Processing by QuotationsController#new as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotations/new.html.erb within layouts/application
+  Rendered quotations/_form.html.erb (Duration: 4.2ms | Allocations: 2741)
+  Rendered quotations/new.html.erb within layouts/application (Duration: 6.0ms | Allocations: 3153)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 6192)
+Completed 200 OK in 53ms (Views: 11.1ms | ActiveRecord: 14.8ms | Allocations: 20730)
+
+
+Started POST "/quotations" for ::1 at 2021-09-23 15:51:49 -0300
+Processing by QuotationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "quotation"=>{"name"=>"teste 01", "value"=>"40000", "discount"=>"0.0", "installments"=>"", "credit_card_fee"=>"0.0"}, "commit"=>"Create Quotation"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameter: :credit_card_fee[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/quotation.rb:26:in `calculate_commissions'
+  [1m[36mSetup Load (1.1ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:26:in `calculate_commissions'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:27:in `calculate_commissions'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:39:in `calculate_taxs'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:40:in `calculate_taxs'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:16:in `calculate_factory_cost'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:33:in `calculate_other_values'
+  [1m[36mCACHE Setup Load (0.0ms)[0m  [1m[34mSELECT "setups".* FROM "setups" ORDER BY "setups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/quotation.rb:34:in `calculate_other_values'
+  [1m[36mQuotation Create (2.2ms)[0m  [1m[32mINSERT INTO "quotations" ("name", "value", "factory_cost", "reserve_cost", "tax", "manager_commission", "assembler_commission", "shipping_cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "teste 01"], ["value", "40000.0"], ["factory_cost", "12200.0"], ["reserve_cost", "1200.0"], ["tax", "1100.0"], ["manager_commission", "1200.0"], ["assembler_commission", "4000.0"], ["shipping_cost", "732.0"], ["created_at", "2021-09-23 18:51:50.022724"], ["updated_at", "2021-09-23 18:51:50.022724"]]
+  ↳ app/controllers/quotations_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/quotations_controller.rb:18:in `create'
+Redirected to http://localhost:3000/quotations
+Completed 302 Found in 46ms (ActiveRecord: 12.8ms | Allocations: 16206)
+
+
+Started GET "/quotations" for ::1 at 2021-09-23 15:51:50 -0300
+Processing by QuotationsController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering quotations/index.html.erb within layouts/application
+  [1m[36mQuotation Load (1.7ms)[0m  [1m[34mSELECT "quotations".* FROM "quotations"[0m
+  ↳ app/views/quotations/index.html.erb:28
+  Rendered quotations/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 1757)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 4777)
+Completed 200 OK in 17ms (Views: 9.7ms | ActiveRecord: 3.1ms | Allocations: 6781)
+
+
+Started GET "/" for ::1 at 2021-09-23 15:52:01 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 116)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | Allocations: 3620)
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 0.9ms | Allocations: 5333)
+
+
+Started GET "/users" for ::1 at 2021-09-23 15:52:06 -0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:14
+  Rendered users/index.html.erb within layouts/application (Duration: 9.0ms | Allocations: 2159)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 5239)
+Completed 200 OK in 18ms (Views: 14.5ms | ActiveRecord: 1.6ms | Allocations: 6410)
+
+
+Started GET "/users/1" for ::1 at 2021-09-23 15:52:08 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `show'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT SUM("quotations"."value") FROM "quotations" WHERE "quotations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:10:in `show'
+  [1m[36mNegociationValue Load (2.9ms)[0m  [1m[34mSELECT "negociation_values".* FROM "negociation_values" WHERE (min_value <= 0.0) AND (max_value >= 0.0) ORDER BY "negociation_values"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 8.6ms | Allocations: 7706)
+
+
+  
+NoMethodError (undefined method `comission' for nil:NilClass):
+  
+app/controllers/users_controller.rb:11:in `show'
+Started GET "/users" for ::1 at 2021-09-23 15:52:12 -0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:14
+  Rendered users/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 980)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 3995)
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 1.6ms | Allocations: 4512)
+
+
+Started GET "/" for ::1 at 2021-09-23 15:52:13 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 117)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 3159)
+Completed 200 OK in 17ms (Views: 9.4ms | ActiveRecord: 2.0ms | Allocations: 5333)
+
+
