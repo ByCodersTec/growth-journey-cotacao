@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_08_23_223648) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "negociation_values", force: :cascade do |t|
     t.decimal "max_value", default: "0.0"
     t.decimal "min_value", default: "0.0"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_223648) do
   end
 
   create_table "quotations", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.string "status"
     t.decimal "value", default: "0.0"
