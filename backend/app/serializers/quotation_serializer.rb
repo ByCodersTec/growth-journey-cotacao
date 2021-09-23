@@ -2,9 +2,8 @@
 
 class QuotationSerializer < ApplicationSerializer
   attributes :user, :status, :value, :factory_cost, :form_payment,
-  :minimal_sale_value, :reserve_cost, :credit_card_fee, :installments
+             :minimal_sale_value, :reserve_cost, :credit_card_fee, :installments
 end
-
 
 # t.integer "user_id"
 #     t.string "name"

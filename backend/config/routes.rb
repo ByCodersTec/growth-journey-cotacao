@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :quotations
+  resources :users
   root to: 'welcome#index'
   
   namespace :api, defaults: {format: 'json'} do 

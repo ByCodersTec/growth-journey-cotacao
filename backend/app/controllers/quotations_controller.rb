@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class QuotationsController < ApplicationController
-  before_action :set_quotation, only: %i[ edit update destroy ]
+  before_action :set_quotation, only: %i[edit update destroy]
   before_action :authenticate_user!
 
-  def index    
-    @quotations = Quotation.all 
+  def index
+    @quotations = Quotation.all
   end
 
   def new
@@ -23,7 +25,6 @@ class QuotationsController < ApplicationController
   def edit; end
 
   def update
-
     if @quotation.update(quotation_params)
       redirect_to quotations_path
     else

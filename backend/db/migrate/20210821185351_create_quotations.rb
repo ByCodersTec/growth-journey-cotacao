@@ -5,6 +5,7 @@ class CreateQuotations < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :status
       t.decimal :value, default: 0.0
+      t.decimal :cost_index, default: 0.0
       t.decimal :factory_cost, default: 0.0
       t.string :form_payment
       t.decimal :minimal_sale_value, default: 0.0
@@ -17,6 +18,7 @@ class CreateQuotations < ActiveRecord::Migration[6.1]
       t.decimal :manager_commission, default: 0.0
       t.decimal :assembler_commission, default: 0.0
       t.decimal :seller_commission, default: 0.0
+      t.decimal :finder_commission, default: 0.0
       t.decimal :shipping_cost, default: 0.0
       
 
